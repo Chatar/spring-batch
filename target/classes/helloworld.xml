@@ -19,7 +19,7 @@
     </step>
 
     <job id="helloWorldJob" incrementer="idIncrementer">
-        <step id="step1" parent="helloWorldStep"/>
+        <step id="helloWorldStep1" parent="helloWorldStep"/>
          <listeners>
         	<listener ref="loggingListener"/>
     	</listeners>

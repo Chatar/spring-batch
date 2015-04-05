@@ -36,7 +36,7 @@
     </beans:bean>
 
     <job id="stepJob" incrementer="idIncrementer">
-        <step id="step1">
+        <step id="stepJobStep1">
             <tasklet>
                 <chunk reader="inputReader" writer="outputWriter"
                        commit-interval="50"/>

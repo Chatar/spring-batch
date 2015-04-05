@@ -38,12 +38,12 @@
     <step id="copyStep">
         <tasklet>
             <chunk reader="inputReader" writer="outputWriter"
-                commit-interval="1"/>
+                commit-interval="10000"/>
         </tasklet>
     </step>
 
     <job id="chunkConfigurationJob" incrementer="idIncrementer">
-        <step id="step1" parent="copyStep" />
+        <step id="chunkConfigurationStep1" parent="copyStep" />
         <!-- <listeners>
         	<listener ref="inputFileWriterListener"/>
     	</listeners> -->

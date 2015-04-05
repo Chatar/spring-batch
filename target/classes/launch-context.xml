@@ -14,7 +14,26 @@
 
 	<context:component-scan base-package="com.chatar.batch" />
 
-	<batch:job-repository id="jobRepository" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+    	<property name="driverClassName" value="${batch.jdbc.driver}" />
+    	<property name="url" value="${batch.jdbc.url}" />
+    	<property name="username" value="${batch.jdbc.user}" />
+    	<property name="password" value="${batch.jdbc.password}" />
+	</bean>
+
+	<bean id="transactionManager"
+    	class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+    	lazy-init="true">
+    	<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<batch:job-repository id="jobRepository" data-source="dataSource"
+    	transaction-manager="transactionManager"/>
+    	
+    <bean id="jobLauncher"
+      	class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+    	<property name="jobRepository" ref="jobRepository" />
+	</bean>
 	
 	<bean id="jobExplorer"
 			class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">

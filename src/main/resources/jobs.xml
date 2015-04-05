@@ -9,8 +9,8 @@
 
     <beans:import resource="./launch-context.xml"/>
     <beans:import resource="./jobs/helloworld.xml"/>
-    <beans:import resource="./jobs/stepjob.xml"/>
-    <beans:import resource="./jobs/chunkconfigurationjob.xml"/>
+    <beans:import resource="./jobs/stepjob.xml"/> 
+    <beans:import resource="./jobs/chunkconfigurationjob.xml"/> 
 	
 </beans:beans>
 
