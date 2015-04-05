@@ -9,12 +9,9 @@ import org.springframework.batch.repeat.RepeatStatus;
 
 public class HelloWorld implements Tasklet {
 
-     private static final String HELLO_WORLD = "Hello, world!";
      private String name;
 
      public RepeatStatus execute( StepContribution arg0, ChunkContext context ) throws Exception {
-          System.out.println( HELLO_WORLD );
-          
           Date cob =
                   (Date) context.getStepContext().getJobParameters().get("cob");
               System.out.println( "COB :: "+cob );
