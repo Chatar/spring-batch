@@ -35,14 +35,16 @@
         </beans:property>
     </beans:bean>
 
-    <job id="stepJob">
+    <job id="stepJob" incrementer="idIncrementer">
         <step id="step1">
             <tasklet>
                 <chunk reader="inputReader" writer="outputWriter"
                        commit-interval="50"/>
             </tasklet>
         </step>
-    </job>              
+    </job>  
+    
+    <beans:bean id="idIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
 
 </beans:beans>
 
