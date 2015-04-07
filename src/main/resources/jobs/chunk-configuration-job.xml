@@ -34,16 +34,22 @@
 				class="org.springframework.batch.item.file.transform.PassThroughLineAggregator"/>
         </beans:property>
     </beans:bean>
+    
+    <step id="copyStep">
+        <tasklet>
+            <chunk reader="inputReader" writer="outputWriter"
+                commit-interval="10000"/>
+        </tasklet>
+    </step>
 
-    <job id="stepJob" incrementer="idIncrementer">
-        <step id="stepJobStep1">
-            <tasklet>
-                <chunk reader="inputReader" writer="outputWriter"
-                       commit-interval="50"/>
-            </tasklet>
-        </step>
+    <job id="chunkConfigurationJob" incrementer="idIncrementer">
+        <step id="chunkConfigurationStep1" parent="copyStep" />
+        <!-- <listeners>
+        	<listener ref="inputFileWriterListener"/>
+    	</listeners> -->
     </job>  
     
+    <beans:bean id="inputFileWriterListener" class="com.chatar.batch.jobs.listener.InputFileWriterListener"/>
     <beans:bean id="idIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
 
 </beans:beans>

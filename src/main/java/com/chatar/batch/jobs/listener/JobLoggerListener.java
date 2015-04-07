@@ -1,4 +1,4 @@
-package com.chatar.batch.practice.listener;
+package com.chatar.batch.jobs.listener;
 
 import org.springframework.batch.core.JobExecution;
 import org.springframework.batch.core.JobExecutionListener;

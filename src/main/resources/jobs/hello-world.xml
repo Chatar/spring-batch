@@ -7,9 +7,7 @@
                     http://www.springframework.org/schema/batch
                     http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
-    <beans:import resource="../launch-context.xml"/>
-                         
-     <beans:bean id="helloWorld" class="com.chatar.batch.practice.HelloWorld"
+     <beans:bean id="helloWorld" class="com.chatar.batch.jobs.HelloWorld"
     		scope="step">
     	<beans:property name="name" value="#{jobParameters[name]}"/>
 	</beans:bean>
@@ -25,7 +23,7 @@
     	</listeners>
     </job>
     
-    <beans:bean id="loggingListener" class="com.chatar.batch.practice.listener.JobLoggerListener"/>
+    <beans:bean id="loggingListener" class="com.chatar.batch.jobs.listener.JobLoggerListener"/>
     
     <beans:bean id="idIncrementer" class="org.springframework.batch.core.launch.support.RunIdIncrementer"/>
 

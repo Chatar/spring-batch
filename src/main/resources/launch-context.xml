@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	xmlns:batch="http://www.springframework.org/schema/batch"
-	xmlns:context="http://www.springframework.org/schema/context"
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:batch="http://www.springframework.org/schema/batch"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-2.1.xsd
@@ -14,30 +13,34 @@
 
 	<context:component-scan base-package="com.chatar.batch" />
 
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
-    	<property name="driverClassName" value="${batch.jdbc.driver}" />
-    	<property name="url" value="${batch.jdbc.url}" />
-    	<property name="username" value="${batch.jdbc.user}" />
-    	<property name="password" value="${batch.jdbc.password}" />
-	</bean>
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<beans:property name="driverClassName" value="${batch.jdbc.driver}" />
+		<beans:property name="url" value="${batch.jdbc.url}" />
+		<beans:property name="username" value="${batch.jdbc.user}" />
+		<beans:property name="password" value="${batch.jdbc.password}" />
+	</beans:bean>
 
-	<bean id="transactionManager"
-    	class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-    	lazy-init="true">
-    	<property name="dataSource" ref="dataSource" />
-	</bean>
-	
-	<batch:job-repository id="jobRepository" data-source="dataSource"
-    	transaction-manager="transactionManager" isolation-level-for-create="READ_COMMITTED"/>
-    	
-    <bean id="jobLauncher"
-      	class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
-    	<property name="jobRepository" ref="jobRepository" />
-	</bean>
-	
-	<bean id="jobExplorer"
-			class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">
-    <property name="dataSource" ref="dataSource"/>
-</bean>
+	<beans:bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+		lazy-init="true">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
 
-</beans>
+	<batch:job-repository id="jobRepository"
+		data-source="dataSource" transaction-manager="transactionManager" />
+		
+		<beans:bean id="jobExplorer"
+		class="org.springframework.batch.core.explore.support.JobExplorerFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+
+	<beans:bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<beans:property name="jobRepository" ref="jobRepository" />
+	</beans:bean>
+
+</beans:beans>
+
+
+
+

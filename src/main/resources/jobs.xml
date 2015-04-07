@@ -8,10 +8,9 @@
                     http://www.springframework.org/schema/batch/spring-batch-2.1.xsd">
 
     <beans:import resource="./launch-context.xml"/>
-    <beans:import resource="./jobs/helloworld.xml"/>
-    <beans:import resource="./jobs/stepjob.xml"/> 
-    <beans:import resource="./jobs/chunkconfigurationjob.xml"/> 
+    <beans:import resource="./jobs/hello-world.xml"/>
+    <beans:import resource="./jobs/step-job.xml"/> 
+    <beans:import resource="./jobs/chunk-configuration-job.xml"/> 
+  <!--    <beans:import resource="./jobs/jmx-job.xml"/> -->
 	
 </beans:beans>
-
-					  

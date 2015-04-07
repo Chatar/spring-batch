@@ -1,4 +1,4 @@
-package com.chatar.batch.practice;
+package com.chatar.batch.jobs;
 
 import java.util.Date;
 
